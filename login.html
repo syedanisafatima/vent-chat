@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentChat - Log In</title>
+    <link rel="stylesheet" href="auth-style.css">
+</head>
+<body>
+
+    <div class="auth-card">
+        <h1 class="auth-title">Welcome Back!</h1>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">👤 Username</label>
+                <input type="text" id="username" placeholder="your_username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">🔑 Password</label>
+                <input type="password" id="password" placeholder="********" required>
+            </div>
+
+            <button type="submit" class="auth-btn">Log In</button>
+        </form>
+
+        <div class="switch-auth">
+            New user? <a href="signup.html">Sign Up</a>
+        </div>
+        
+        <div class="footer-text">© 2026 VentChat</div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            // Save username for greeting
+            localStorage.setItem('ventChatUser', username);
+            localStorage.setItem('authAction','login');// Redirect to main app dashboard after log in
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

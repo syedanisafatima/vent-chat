@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentChat - Mood Check-In</title>
+    <link rel="stylesheet" href="auth-style.css"> 
+    <style>
+        /* Emoji selection state */
+        .emoji-icon {
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: transform 0.1s;
+        }
+        .emoji-icon.selected {
+            transform: scale(1.25);
+            background-color: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+        }
+
+        /* Quick Tags pressed/selected state styling */
+        .tag-btn {
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #333;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+        .tag-btn.selected {
+            background-color: #ffd700 !important;
+            color: #111 !important;
+            border-color: #fff !important;
+            box-shadow: inset 0 3px 0 rgba(0,0,0,0.3);
+            transform: translateY(2px);
+        }
+
+        #saveMoodBtn:not(:disabled) {
+            cursor: pointer;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card" style="width: 680px;">
+        <h1 id="greeting" class="auth-title">Welcome</h1>
+
+        <div class="mood-question" style="font-size: 15px; margin-bottom: 20px; color: #fff;">
+            How are you feeling today?
+        </div>
+
+        <!-- All 6 Emojis Container -->
+        <div class="emoji-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+            <span class="emoji-icon" data-mood="Very Happy" style="font-size: 28px;" title="Very Happy">😁</span>
+            <span class="emoji-icon" data-mood="Happy" style="font-size: 28px;" title="Happy">😊</span>
+            <span class="emoji-icon" data-mood="Normal" style="font-size: 28px;" title="Normal">😐</span>
+            <span class="emoji-icon" data-mood="Sad" style="font-size: 28px;" title="Sad">🙁</span>
+            <span class="emoji-icon" data-mood="Crying" style="font-size: 28px;" title="Crying">😭</span>
+            <span class="emoji-icon" data-mood="Angry" style="font-size: 28px;" title="Angry">😡</span>
+        </div>
+
+        <!-- Dynamic Comfort Message -->
+        <div id="comfort-message" style="font-size: 11px; color: #ffd700; margin-bottom: 20px; min-height: 20px;">
+            Select an emoji above to begin.
+        </div>
+
+        <!-- Quick Tags Section -->
+        <div id="tagsSection" class="tags-section" style="display: none; margin-bottom: 25px;">
+            <div class="tags-title" style="font-size: 11px; margin-bottom: 10px; color: #ccc;">Quick Tags</div>
+            <div class="tags-container" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="tag-btn" data-tag="Work">📚 [Work]</button>
+                <button type="button" class="tag-btn" data-tag="Sleep">🌙 [Sleep]</button>
+                <button type="button" class="tag-btn" data-tag="Friends">👥 [Friends]</button>
+                <button type="button" class="tag-btn" data-tag="Other" id="otherTagBtn">⚪ [Other]</button>
+            </div>
+
+            <!-- Custom text input for Other tag -->
+            <div id="otherInputContainer" style="display: none; margin-top: 12px;">
+                <input type="text" id="customTagInput" placeholder="Type a word or two..." maxlength="25" style="font-family: 'Press Start 2P'; font-size: 9px; padding: 8px; width: 65%; border-radius: 6px; border: 2px solid #333; outline: none;">
+            </div>
+        </div>
+
+        <!-- Save Mood Button -->
+        <button id="saveMoodBtn" class="auth-btn" disabled style="opacity: 0.5;">Save Mood</button>
+        
+        <!-- Tell More Button -->
+        <button id="tellMoreBtn" class="auth-btn" style="display: none; background-color: #4a4ae2; color: white;" onclick="window.location.href='journal.html'">
+            Tell me more about it ✍️
+        </button>
+
+        <div style="margin-top: 15px;">
+            <a href="history.html" style="font-size: 10px; color: #ffd700; text-decoration: underline;">View My Full Mood History</a>
+        </div>
+    </div>
+
+    <div id="feedbackPopUp" style="display:none; position:fixed; bottom:20px; background:#333; color:#fff; padding:10px 20px; border-radius:8px; font-family:'Press Start 2P'; font-size:10px;">Mood logged!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

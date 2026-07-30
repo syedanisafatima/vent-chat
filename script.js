@@ -83,14 +83,59 @@ console.log("VentChat Loaded!");
                 selectedTags.push(`Other: ${customTagInput.value.trim()}`);
             }
 
-            const today = new Date().toISOString().split('T')[0];
-            const moodData = { date: today, mood: selectedMood, tags: selectedTags };
-            
-            let history = JSON.parse(localStorage.getItem('ventChatHistory')) || [];
-            history.push(moodData);
-            localStorage.setItem('ventChatHistory', JSON.stringify(history));
+            import {
+  auth,
+  db,
+  addDoc,
+  collection,
+  serverTimestamp
+} from "./firebase.js";
 
-            const popUp = document.getElementById('feedbackPopUp');
+const saveBtn = document.getElementById("saveMoodBtn");
+
+saveBtn.addEventListener("click", async () => {
+
+    const selectedEmoji =
+        document.querySelector(".emoji-icon.selected");
+
+    if (!selectedEmoji) {
+        alert("Please select a mood first.");
+        return;
+    }
+
+    const mood = selectedEmoji.dataset.mood;
+
+    const tags = [];
+
+    document.querySelectorAll(".tag-btn.selected").forEach(tag => {
+        tags.push(tag.dataset.tag);
+    });
+
+    try {
+
+        await addDoc(collection(db, "moods"), {
+
+            userId: auth.currentUser.uid,
+
+            mood: mood,
+
+            tags: tags,
+
+            createdAt: serverTimestamp()
+
+        });
+
+        console.log("Mood Saved!");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+});
             if (popUp) {
                 popUp.style.display = 'block';
                 setTimeout(() => { popUp.style.display = 'none'; }, 1500);

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Entry</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    <link rel="stylesheet" href="entry.css">
+</head>
+<body>
+
+    <!-- Dynamic Mood Background Overlay -->
+    <div class="bg-overlay" id="bgOverlay"></div>
+
+    <!-- Main Entry Container -->
+    <div class="entry-wrapper">
+        
+        <!-- Top Lane: Editable Title on Left, Circular Logo on Right -->
+        <div class="entry-header-row">
+            <input type="text" id="displayTitleInput" placeholder="Journal Title" value="Journal Title">
+            <img src="logo.jpeg" alt="Logo" class="header-logo" onerror="this.src='logo.png'; this.onerror=()=>this.style.display='none';">
+        </div>
+
+        <!-- Full length textarea -->
+        <textarea id="journalInput" placeholder="Start your journal..."></textarea>
+
+        <!-- Save Button at the Bottom Center -->
+        <div class="bottom-action-row">
+            <button id="saveEntryBtn" class="save-btn">Save Entry</button>
+        </div>
+    </div>
+
+    <script src="entry.js"></script>
+</body>
+</html>

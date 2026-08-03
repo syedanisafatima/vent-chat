@@ -1,0 +1,128 @@
+/* Base Reset & Variables */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0d1326;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dynamic Mood Background Image Overlay */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Entry Wrapper filling the screen length */
+.entry-wrapper {
+    width: 90%;
+    max-width: 900px;
+    height: 85vh;
+    background-color: rgba(17, 23, 46, 0.92);
+    border: 1px solid #232d4f;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.entry-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #232d4f;
+    padding-bottom: 15px;
+}
+
+/* Editable Title Input Style */
+#displayTitleInput {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f8fafc;
+    width: 60%;
+    padding: 4px 8px;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#displayTitleInput:hover, #displayTitleInput:focus {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #3b4878;
+}
+
+/* Circular Logo with White Background Remover */
+.header-logo {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%; /* Forces a perfect circle */
+    border: 1px solid #3b4878;
+    display: block;
+    flex-shrink: 0;
+    background-color: #11172e;
+    mix-blend-mode: screen; /* Blends away the white background box */
+}
+
+/* Normal Font Textarea filling the screen length */
+#journalInput {
+    flex-grow: 1;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+#journalInput::placeholder {
+    color: #64748b;
+}
+
+/* Bottom Action Row for Centered Save Button */
+.bottom-action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    border-top: 1px solid #232d4f;
+    padding-top: 15px;
+}
+
+/* Save Button Styling */
+.save-btn {
+    background-color: #eab308;
+    color: #0d1326;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 30px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+    background-color: #ca9a04;
+}

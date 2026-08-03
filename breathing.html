@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathe</title>
+    <!-- Pixel Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breathing.css">
+</head>
+<body>
+
+    <div class="phone-container">
+        <!-- Video Background (.mp4) -->
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="breathingbg.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        
+        <!-- Overlay Content -->
+        <div class="content-overlay">
+            <div class="text-section">
+                <h1 id="mainTitle">Lets Relax</h1>
+            </div>
+
+            <div class="circle-container">
+                <div class="breathing-circle" id="breathingCircle"></div>
+                <span id="actionText">Ready...</span>
+            </div>
+
+            <div class="button-section">
+                <button id="startBtn" class="btn-primary">Start</button>
+                <button id="historyBtn" class="btn-secondary">History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="breathing.js"></script>
+</body>
+</html>

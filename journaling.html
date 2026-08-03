@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journaling</title>
+    <!-- Pixel Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    <link rel="stylesheet" href="journaling.css">
+</head>
+<body>
+
+    <!-- Top Banner Section -->
+    <div class="banner-container">
+        <img src="ventchatbanner.jpeg" alt="Vent, Chat Banner" class="banner-image">
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+        
+        <!-- Left Sidebar / Entries Section -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="avatar-icon">🐱</div>
+            </div>
+
+            <div class="entries-list">
+                <!-- Dynamically populated entries will appear here -->
+                <div class="entry-card active-preview">
+                    <div class="entry-card-header">
+                        <span class="entry-title">Journal Entry 1</span>
+                        <span class="entry-date">May 20</span>
+                    </div>
+                    <p class="entry-snippet">Completed my assignments...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content Area -->
+        <div class="content-area">
+            
+            <!-- Header greeting & Search / Action bar -->
+            <div class="content-top-row">
+                <div class="greeting-section">
+                    <h1>Start your journal the way you like it!</h1>
+                    <div class="quote-box">
+                        <span class="quote-line"></span>
+                        <p>"Writing is the only way I have to explain my own life to myself." <span>— Pat Conroy</span></p>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search entries..." id="searchInput">
+                    </div>
+                    <button class="new-entry-btn" id="newEntryBtn">+ New Entry</button>
+                </div>
+            </div>
+
+            <!-- Mood Selector Section (Strict 3x2 Grid) -->
+            <div class="mood-selection-section">
+                <h2>Choose the mood for your entry</h2>
+                
+                <div class="mood-grid">
+                    <!-- Wonderful -->
+                    <div class="mood-card selected" data-mood="Wonderful">
+                        <div class="mood-img-container">
+                            <img src="wonderful.jpeg" alt="Wonderful">
+                        </div>
+                        <span class="mood-label">Wonderful</span>
+                    </div>
+
+                    <!-- Happy -->
+                    <div class="mood-card" data-mood="Happy">
+                        <div class="mood-img-container">
+                            <img src="happy.jpeg" alt="Happy">
+                        </div>
+                        <span class="mood-label">Happy</span>
+                    </div>
+
+                    <!-- Indifferent -->
+                    <div class="mood-card" data-mood="Indifferent">
+                        <div class="mood-img-container">
+                            <img src="indifferent.jpeg" alt="Indifferent">
+                        </div>
+                        <span class="mood-label">Indifferent</span>
+                    </div>
+
+                    <!-- Down -->
+                    <div class="mood-card" data-mood="Down">
+                        <div class="mood-img-container">
+                            <img src="down.jpeg" alt="Down">
+                        </div>
+                        <span class="mood-label">Down</span>
+                    </div>
+
+                    <!-- Hectic -->
+                    <div class="mood-card" data-mood="Hectic">
+                        <div class="mood-img-container">
+                            <img src="hectic.jpeg" alt="Hectic">
+                        </div>
+                        <span class="mood-label">Hectic</span>
+                    </div>
+
+                    <!-- Angry -->
+                    <div class="mood-card" data-mood="Angry">
+                        <div class="mood-img-container">
+                            <img src="angry.jpeg" alt="Angry">
+                        </div>
+                        <span class="mood-label">Angry</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- Custom Title Modal Popup -->
+<div id="titleModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h3>Enter entry title:</h3>
+        <input type="text" id="modalTitleInput" placeholder="My Journal Entry">
+        <div class="modal-buttons">
+            <button id="modalStartBtn" class="yellow-action-btn">Start Journaling</button>
+            <button id="modalCancelBtn" class="cancel-action-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+    
+    <!-- Breathe Section -->
+    <div class="breathe-section">
+      <p class="breathe-text">Maybe start with relaxing</p>
+      <a href="breathing.html" class="breathe-btn">Breathe</a>
+    </div>
+
+    <!-- Script Link Restored -->
+    <script src="journaling.js"></script>
+
+</body>
+</html>

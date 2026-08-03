@@ -13,13 +13,16 @@
         
         <form id="signupForm">
             <div class="input-group">
-                <label for="username">👤 Username</label>
+                <label for="username">👤Choose a Username</label>
                 <input type="text" id="username" placeholder="choose_username" required>
             </div>
-
+<div class="input-group">
+    <label for="email">📧 Email Address</label>
+    <input type="email" id="email" placeholder="you@example.com" required>
+</div>
             <div class="input-group">
-                <label for="password">🔑 Password</label>
-                <input type="password" id="password" placeholder="********" required>
+                <label for="password">🔑Create a Password</label>
+                <input type="password" id="password" placeholder="****** At least 6 characters" required>
             </div>
 
             <button type="submit" class="auth-btn">Sign Up</button>
@@ -31,16 +34,7 @@
         
         <div class="footer-text">© 2026 VentChat</div>
     </div>
-
-    <script>
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            // Save username for the dashboard greeting later!
-            localStorage.setItem('ventChatUser', username);
-            localStorage.setItem('authAction','signup');// Redirect to main app dashboard after sign up
-            window.location.href = 'index.html';
-        });
-    </script>
+<script type="module" src="signup.js"></script>
+    
 </body>
 </html>

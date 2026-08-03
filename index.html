@@ -6,15 +6,34 @@
     <title>VentChat - Mood Check-In</title>
     <link rel="stylesheet" href="auth-style.css"> 
     <style>
-        /* Emoji selection state */
+        /* Full-screen page layout with no card box or borders */
+        body {
+            background-color: transparent;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .auth-card {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            text-align: center;
+        }
+
+        /* Emoji selection state & size */
         .emoji-icon {
+            font-size: 65px !important;
             cursor: pointer;
-            padding: 4px;
+            padding: 5px;
             border-radius: 50%;
             transition: transform 0.1s;
         }
         .emoji-icon.selected {
-            transform: scale(1.25);
+            transform: scale(1.35);
             background-color: rgba(255, 215, 0, 0.3);
             border: 2px solid #ffd700;
         }
@@ -25,8 +44,8 @@
             color: #333;
             border: 2px solid #333;
             font-family: 'Press Start 2P', cursive;
-            font-size: 9px;
-            padding: 8px 10px;
+            font-size: 12px;
+            padding: 10px 14px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.1s ease;
@@ -45,34 +64,36 @@
         }
     </style>
 </head>
-<body>
+<body class="index-page">
+    
+    <div class="auth-card">
+        <!-- Moved greeting much higher up -->
+        <h1 id="greeting" class="auth-title" style="font-size: 2.5rem; margin-bottom: 35px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Welcome</h1>
 
-    <div class="auth-card" style="width: 680px;">
-        <h1 id="greeting" class="auth-title">Welcome</h1>
-
-        <div class="mood-question" style="font-size: 15px; margin-bottom: 20px; color: #fff;">
+        <!-- Spaced out question text -->
+        <div class="mood-question" style="font-size: 1.6rem; margin-bottom: 35px; color: #ffeb3b; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
             How are you feeling today?
         </div>
 
-        <!-- All 6 Emojis Container -->
-        <div class="emoji-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
-            <span class="emoji-icon" data-mood="Very Happy" style="font-size: 28px;" title="Very Happy">😁</span>
-            <span class="emoji-icon" data-mood="Happy" style="font-size: 28px;" title="Happy">😊</span>
-            <span class="emoji-icon" data-mood="Normal" style="font-size: 28px;" title="Normal">😐</span>
-            <span class="emoji-icon" data-mood="Sad" style="font-size: 28px;" title="Sad">🙁</span>
-            <span class="emoji-icon" data-mood="Crying" style="font-size: 28px;" title="Crying">😭</span>
-            <span class="emoji-icon" data-mood="Angry" style="font-size: 28px;" title="Angry">😡</span>
+        <!-- Big Emojis with plenty of gap -->
+        <div class="emoji-container" style="display: flex; justify-content: center; gap: 25px; margin-bottom: 35px;">
+            <span class="emoji-icon" data-mood="Very Happy" title="Very Happy">😁</span>
+            <span class="emoji-icon" data-mood="Happy" title="Happy">😊</span>
+            <span class="emoji-icon" data-mood="Normal" title="Normal">😐</span>
+            <span class="emoji-icon" data-mood="Sad" title="Sad">🙁</span>
+            <span class="emoji-icon" data-mood="Crying" title="Crying">😭</span>
+            <span class="emoji-icon" data-mood="Angry" title="Angry">😡</span>
         </div>
 
-        <!-- Dynamic Comfort Message -->
-        <div id="comfort-message" style="font-size: 11px; color: #ffd700; margin-bottom: 20px; min-height: 20px;">
+        <!-- Larger feedback text below -->
+        <div id="comfort-message" style="font-size: 18px; color: #ffd700; margin-bottom: 30px; min-height: 25px; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
             Select an emoji above to begin.
         </div>
 
         <!-- Quick Tags Section -->
         <div id="tagsSection" class="tags-section" style="display: none; margin-bottom: 25px;">
-            <div class="tags-title" style="font-size: 11px; margin-bottom: 10px; color: #ccc;">Quick Tags</div>
-            <div class="tags-container" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+            <div class="tags-title" style="font-size: 13px; margin-bottom: 12px; color: #ddd;">Quick Tags</div>
+            <div class="tags-container" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
                 <button type="button" class="tag-btn" data-tag="Work">📚 [Work]</button>
                 <button type="button" class="tag-btn" data-tag="Sleep">🌙 [Sleep]</button>
                 <button type="button" class="tag-btn" data-tag="Friends">👥 [Friends]</button>
@@ -81,7 +102,7 @@
 
             <!-- Custom text input for Other tag -->
             <div id="otherInputContainer" style="display: none; margin-top: 12px;">
-                <input type="text" id="customTagInput" placeholder="Type a word or two..." maxlength="25" style="font-family: 'Press Start 2P'; font-size: 9px; padding: 8px; width: 65%; border-radius: 6px; border: 2px solid #333; outline: none;">
+                <input type="text" id="customTagInput" placeholder="Type a word or two..." maxlength="25" style="font-family: 'Press Start 2P'; font-size: 11px; padding: 10px; width: 65%; border-radius: 6px; border: 2px solid #333; outline: none;">
             </div>
         </div>
 
@@ -93,14 +114,13 @@
             Tell me more about it ✍️
         </button>
 
-        <div style="margin-top: 15px;">
-            <a href="history.html" style="font-size: 10px; color: #ffd700; text-decoration: underline;">View My Full Mood History</a>
+        <div style="margin-top: 20px;">
+            <a href="history.html" style="font-size: 12px; color: #ffd700; text-decoration: underline;">View My Full Mood History</a>
         </div>
     </div>
 
-    <div id="feedbackPopUp" style="display:none; position:fixed; bottom:20px; background:#333; color:#fff; padding:10px 20px; border-radius:8px; font-family:'Press Start 2P'; font-size:10px;">Mood logged!</div>
-
-    <script src="script.js"></script>
+    <div id="feedbackPopUp" style="display:none; position:fixed; bottom:20px; background:#333; color:#fff; padding:10px 20px; border-radius:8px; font-family:'Press Start 2P'; font-size:11px;">Mood logged!</div>
+<script src="script.js"></script>
+<script type="module" src="mood.js"></script>
 </body>
 </html>
-

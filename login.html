@@ -13,8 +13,8 @@
         
         <form id="loginForm">
             <div class="input-group">
-                <label for="username">👤 Username</label>
-                <input type="text" id="username" placeholder="your_username" required>
+                <label for="email">📧 Email</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
             </div>
 
             <div class="input-group">
@@ -31,16 +31,7 @@
         
         <div class="footer-text">© 2026 VentChat</div>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            // Save username for greeting
-            localStorage.setItem('ventChatUser', username);
-            localStorage.setItem('authAction','login');// Redirect to main app dashboard after log in
-            window.location.href = 'index.html';
-        });
-    </script>
+<script type="module" src="login.js"></script>
+    
 </body>
 </html>

@@ -12,7 +12,7 @@ import {
   getFirestore,
   doc,
   setDoc,
-  addDoc,7
+  addDoc,
   collection,
   serverTimestamp,
   getDocs,

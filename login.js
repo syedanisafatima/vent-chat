@@ -26,7 +26,7 @@ form.addEventListener("submit", async (e) => {
 
     alert("Login Successful!");
 
-    window.location.href = "index.html";
+    window.location.href = "checkin.html";
 
   } catch (error) {
     alert(error.message);

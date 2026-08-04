@@ -31,8 +31,8 @@ form.addEventListener("submit", async (e) => {
     localStorage.setItem("ventChatUser", username);
 localStorage.setItem("authAction","signup");
     alert("Account Created Successfully!");
-
-    window.location.href = "index.html";
+alert("going to checkin...")
+    window.location.href = "checkin.html";
 }catch (error) {
     console.log(error);
     console.log(error.code);

@@ -4,7 +4,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
@@ -13,7 +14,11 @@ import {
   setDoc,
   addDoc,
   collection,
-  serverTimestamp
+  serverTimestamp,
+  getDocs,
+  query,
+  where,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 // Firebase configuration
 const firebaseConfig = {
@@ -39,8 +44,13 @@ export {
   addDoc,
   collection,
   serverTimestamp,
+  getDocs,
+  query,
+  where,
+  orderBy,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 };
 
 console.log("Firebase Connected Successfully!");

@@ -29,7 +29,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     localStorage.setItem("ventChatUser", username);
-
+localStorage.setItem("authAction","signup");
     alert("Account Created Successfully!");
 
     window.location.href = "index.html";
@@ -41,7 +41,6 @@ form.addEventListener("submit", async (e) => {
     alert(error.code + "\n" + error.message);
 }
 
-console.log(error);
 
 
 });

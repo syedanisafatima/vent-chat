@@ -1,18 +1,18 @@
+import {
+    auth,
+    db,
+    collection,
+    getDocs,
+    query,
+    where,
+    orderBy,
+    onAuthStateChanged
+} from "./firebase.js";
 document.addEventListener('DOMContentLoaded', () => {
     const entriesListContainer = document.querySelector('.entries-list');
     
     // Default dummy entry if localStorage is empty
-    const defaultEntries = [
-        {
-            title: "Journal Entry 1",
-            date: "May 20",
-            snippet: "Completed my assignments...",
-            mood: "Wonderful",
-            content: "Completed my assignments..."
-        }
-    ];
-
-    const savedEntries = JSON.parse(localStorage.getItem('journalEntries')) || defaultEntries;
+   let savedEntries = [];
 
     // Function to render entries into the sidebar
     function renderEntries(entriesToDisplay) {
@@ -46,8 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+   async function loadEntries(user) {
+
+    try {
+
+        const q = query(
+            collection(db, "journalEntries"),
+            where("userId", "==", user.uid),
+            orderBy("createdAt", "desc")
+        );
+
+        const snapshot = await getDocs(q);
+
+        savedEntries = [];
+
+        snapshot.forEach((doc) => {
+            savedEntries.push(doc.data());
+        });
+
+        renderEntries(savedEntries);
+
+    } catch (error) {
+  console.error(error);
+        alert(error.message);
+
+    }
+
+}
     // Initial render
-    renderEntries(savedEntries);
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+        loadEntries(user);
+    } else {
+        window.location.href = "login.html";
+    }
+
+});
 
     // Interactive Mood Card Selection Logic
     const moodCards = document.querySelectorAll('.mood-card');

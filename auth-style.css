@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('images/background.jpg.jpg'); 
+    background-image: url('images/enhanced_bg.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,15 +11,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Clean modern font globally by default */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #fff;
     overflow: hidden;
 }
+
 body.index-page {
-    background-image: url('images/bluestars.jpg');
+    background-image: url("images/enhanced_bluetree\ 1.png");
 }
-/* Made the card significantly larger and wider */
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 1000px 1000px;
+    }
+}
+
+/* Card Styling */
 .auth-card {
     background-color: rgba(30, 30, 60, 0.88);
     border-radius: 20px;
@@ -27,9 +37,10 @@ body.index-page {
     padding: 30px 40px;
     text-align: center;
     box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.8s ease;
 }
 
-/* Larger title / Headings keep the pixel font */
+/* Headings and Titles */
 .auth-title, #greeting {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.5rem; 
@@ -47,7 +58,6 @@ body.index-page {
     margin-bottom: 30px;
 }
 
-/* Larger labels */
 .input-group label {
     display: block;
     font-size: 14px; 
@@ -55,7 +65,6 @@ body.index-page {
     color: #ddd;
 }
 
-/* Larger text input boxes with clean readable text */
 .input-group input {
     width: 100%;
     padding: 18px;
@@ -73,7 +82,7 @@ body.index-page {
     border-color: #FFD700;
 }
 
-/* Larger submit button - Keeps pixel font as requested */
+/* Submit and Action Buttons */
 .auth-btn {
     display: block;
     width: 100%;
@@ -88,47 +97,48 @@ body.index-page {
     border: 4px solid #333;
     border-radius: 12px;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
-    transition: all 0.1s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
 }
 
 .auth-btn:hover {
     background-color: #ffc800;
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
-/* Move username section up */
+.auth-btn:active {
+    transform: scale(0.97);
+}
+
+/* Text Elements */
 .user-greeting { 
     margin-top: -20px; 
     margin-bottom: 10px;
     font-size: 1.8rem;
 }
 
-/* Make "How are you feeling today?" bigger and clean */
 .mood-question { 
-    font-size: 1.3rem; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 34px; 
     margin-bottom: 15px;
 }
 
-/* Make the emojis bigger */
 .mood-emoji { 
     font-size: 2.5rem; 
     margin: 0 8px;
 }
 
-/* Make the feedback text below it bigger and clean */
 .mood-feedback, #comfort-message { 
     font-size: 1.1rem;
     margin-top: 15px;
     font-weight: 500;
 }
 
-/* Quick Tags - Keeps pixel font as requested */
 .tag-btn {
     font-family: 'Press Start 2P', cursive;
 }
 
-/* Larger switch link text */
 .switch-auth {
     font-size: 12px; 
     color: #ccc;
@@ -140,9 +150,120 @@ body.index-page {
     text-decoration: underline;
 }
 
-/* Larger footer text */
 .footer-text {
     font-size: 10px; 
     color: #888;
     margin-top: 25px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#feedbackPopUp {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+.showPopup {
+    display: block;
+    animation: popup 0.4s ease;
+}
+
+@keyframes popup {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* App Container Layout for Side-by-Side View */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 300px;
+    background: rgba(15, 15, 25, 0.85);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.logo-area h2 {
+    font-size: 16px;
+    color: #ffcc00;
+    margin-bottom: 30px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.nav-links a, .logout-btn {
+    text-decoration: none;
+    color: #aaa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'Press Start 2P', cursive;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background: linear-gradient(135deg, #6b46c1, #3182ce);
+    color: #fff;
+}
+
+/* Logout Button at the Bottom */
+.logout-area {
+    margin-top: auto;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff6b6b;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

@@ -37,7 +37,7 @@ body {
 }
 
 /* Sidebar Styling */
-.sidebar {
+.journal-sidebar {
     width: 260px;
     display: flex;
     flex-direction: column;

@@ -1,149 +1,129 @@
 console.log("VentChat Loaded!");
 
+// Greeting
+const username = localStorage.getItem("ventChatUser") || "Friend";
+const authAction = localStorage.getItem("authAction");
+const greeting = document.getElementById("greeting");
 
-    // 1. Greeting Setup
-    const username = localStorage.getItem('ventChatUser') || 'Friend';
-    const authAction = localStorage.getItem('authAction');
-    const greetingElement = document.getElementById('greeting');
-    
-    if (greetingElement) {
-        if (authAction === 'signup') {
-            greetingElement.innerText = `Hi, ${username}!`;
-        } else {
-            greetingElement.innerText = `Welcome back, ${username}!`;
-        }
+if (greeting) {
+    if (authAction === "signup") {
+        greeting.innerText = `Hi, ${username}!`;
+    } else {
+        greeting.innerText = `Welcome back, ${username}!`;
     }
+}
 
-    // 2. 6 Emojis Logic & Messages
-    const emojis = document.querySelectorAll('.emoji-icon');
-    const comfortMessage = document.getElementById('comfort-message');
-    const tagsSection = document.getElementById('tagsSection');
-    const saveBtn = document.getElementById('saveMoodBtn');
-    let selectedMood = null;
-    let selectedTags = [];
-
-    const messages = {
-        "Very Happy": "Yay! Love that amazing energy for you!",
-        "Happy": "Aw, that's wonderful to see you smiling!",
-        "Normal": "Just an okay day? That's totally fine too.",
-        "Sad": "Aw, I'm so sorry. I'm right here with you.",
-        "Crying": "Sending you the biggest hug right now.",
-        "Angry": "Oh no, I'm sorry you're feeling that way. Let's let it out."
-    };
-
-    emojis.forEach(emoji => {
-        emoji.addEventListener('click', () => {
-            emojis.forEach(e => e.classList.remove('selected'));
-            emoji.classList.add('selected');
-            selectedMood = emoji.getAttribute('data-mood');
-            
-            if (comfortMessage) comfortMessage.innerText = messages[selectedMood] || "I hear you.";
-            if (tagsSection) tagsSection.style.display = 'block';
-            
-            if (saveBtn) {
-                saveBtn.disabled = false;
-                saveBtn.style.opacity = '1';
-            }
-        });
-    });
-
-    // 3. Quick Tags & "Other" Custom Text Box Logic
-    const otherTagBtn = document.getElementById('otherTagBtn');
-    const otherInputContainer = document.getElementById('otherInputContainer');
-    const customTagInput = document.getElementById('customTagInput');
-
-    document.querySelectorAll('.tag-btn').forEach(tagBtn => {
-        tagBtn.addEventListener('click', () => {
-            const tag = tagBtn.getAttribute('data-tag');
-            
-            if (tag === 'Other') {
-                tagBtn.classList.toggle('selected');
-                if (tagBtn.classList.contains('selected')) {
-                    otherInputContainer.style.display = 'block';
-                } else {
-                    otherInputContainer.style.display = 'none';
-                    customTagInput.value = '';
-                    selectedTags = selectedTags.filter(t => !t.startsWith('Other:'));
-                }
-            } else {
-                tagBtn.classList.toggle('selected');
-                if (tagBtn.classList.contains('selected')) {
-                    selectedTags.push(tag);
-                } else {
-                    selectedTags = selectedTags.filter(t => t !== tag);
-                }
-            }
-        });
-    });
-
-    // 4. Save Button Interaction
-    if (saveBtn) {
-        saveBtn.addEventListener('click', () => {
-            if (otherTagBtn && otherTagBtn.classList.contains('selected') && customTagInput.value.trim() !== '') {
-                selectedTags.push(`Other: ${customTagInput.value.trim()}`);
-            }
-
-            import {
-  auth,
-  db,
-  addDoc,
-  collection,
-  serverTimestamp
-} from "./firebase.js";
-
+// Elements
+const emojis = document.querySelectorAll(".emoji-icon");
+const comfortMessage = document.getElementById("comfort-message");
+const tagsSection = document.getElementById("tagsSection");
 const saveBtn = document.getElementById("saveMoodBtn");
+const tellMoreBtn = document.getElementById("tellMoreBtn");
+const popUp = document.getElementById("feedbackPopUp");
 
-saveBtn.addEventListener("click", async () => {
+const otherTagBtn = document.getElementById("otherTagBtn");
+const otherInputContainer = document.getElementById("otherInputContainer");
+const customTagInput = document.getElementById("customTagInput");
 
-    const selectedEmoji =
-        document.querySelector(".emoji-icon.selected");
+let selectedMood = null;
+let selectedTags = [];
 
-    if (!selectedEmoji) {
-        alert("Please select a mood first.");
-        return;
-    }
+// Messages
+const messages = {
+    "Very Happy": "Yay! Love that amazing energy for you!",
+    "Happy": "Aw, that's wonderful to see you smiling!",
+    "Normal": "Just an okay day? That's totally fine too.",
+    "Sad": "I'm sorry you're feeling this way. 💛",
+    "Crying": "Sending you the biggest hug. 🫂",
+    "Angry": "Take a deep breath. I'm here for you."
+};
 
-    const mood = selectedEmoji.dataset.mood;
+// Emoji Selection
+emojis.forEach(emoji => {
+    emoji.addEventListener("click", () => {
 
-    const tags = [];
+        emojis.forEach(e => e.classList.remove("selected"));
 
-    document.querySelectorAll(".tag-btn.selected").forEach(tag => {
-        tags.push(tag.dataset.tag);
+        emoji.classList.add("selected");
+
+        selectedMood = emoji.dataset.mood;
+
+        comfortMessage.innerText = messages[selectedMood];
+
+        tagsSection.style.display = "block";
+
+        saveBtn.disabled = false;
+        saveBtn.style.opacity = "1";
     });
+});
 
-    try {
+// Tags
+document.querySelectorAll(".tag-btn").forEach(button => {
 
-        await addDoc(collection(db, "moods"), {
+    button.addEventListener("click", () => {
 
-            userId: auth.currentUser.uid,
+        const tag = button.dataset.tag;
 
-            mood: mood,
+        if (tag === "Other") {
 
-            tags: tags,
+            button.classList.toggle("selected");
 
-            createdAt: serverTimestamp()
+            if (button.classList.contains("selected")) {
 
-        });
+                otherInputContainer.style.display = "block";
 
-        console.log("Mood Saved!");
+            } else {
 
-    } catch (error) {
+                otherInputContainer.style.display = "none";
+                customTagInput.value = "";
 
-        console.error(error);
+                selectedTags = selectedTags.filter(t => !t.startsWith("Other:"));
+            }
 
-        alert(error.message);
+        } else {
 
-    }
+            button.classList.toggle("selected");
+
+            if (button.classList.contains("selected")) {
+
+                if (!selectedTags.includes(tag))
+                    selectedTags.push(tag);
+
+            } else {
+
+                selectedTags = selectedTags.filter(t => t !== tag);
+
+            }
+
+        }
+
+    });
 
 });
-            if (popUp) {
-                popUp.style.display = 'block';
-                setTimeout(() => { popUp.style.display = 'none'; }, 1500);
-            }
 
-            saveBtn.innerText = 'Mood Saved!';
-            saveBtn.disabled = true;
-            document.getElementById('tellMoreBtn').style.display = 'block';
-        });
+// Save Button UI
+saveBtn.addEventListener("click", () => {
+
+    if (otherTagBtn.classList.contains("selected") &&
+        customTagInput.value.trim() !== "") {
+
+        const other = "Other: " + customTagInput.value.trim();
+
+        if (!selectedTags.includes(other))
+            selectedTags.push(other);
     }
-;
+
+    popUp.classList.add("showPopup");
+
+setTimeout(() => {
+    popUp.classList.remove("showPopup");
+}, 1500);
+
+
+    saveBtn.innerText = "Mood Saved!";
+    saveBtn.disabled = true;
+
+    tellMoreBtn.style.display = "inline-block";
+});
+
+console.log("script.js Finished Successfully!");

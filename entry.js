@@ -1,45 +1,71 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Retrieve stored values from localStorage
-    const savedTitle = localStorage.getItem('entryTitle') || 'My Journal Entry';
-    const savedImgSrc = localStorage.getItem('selectedMoodImg') || 'wonderful.jpeg';
+import {
+  auth,
+  db,
+  addDoc,
+  collection,
+  serverTimestamp
+} from "./firebase.js";
 
-    // Populate the editable title input field
-    const titleInput = document.getElementById('displayTitleInput');
+document.addEventListener("DOMContentLoaded", () => {
+
+    const savedTitle = localStorage.getItem("entryTitle") || "My Journal Entry";
+    const savedImgSrc = localStorage.getItem("selectedMoodImg") || "wonderful.jpeg";
+    const savedMood = localStorage.getItem("selectedMood") || "Wonderful";
+
+    const titleInput = document.getElementById("displayTitleInput");
     titleInput.value = savedTitle;
 
-    // Apply the dynamic mood image as a slightly invisible background
-    const bgOverlay = document.getElementById('bgOverlay');
+    const bgOverlay = document.getElementById("bgOverlay");
     bgOverlay.style.backgroundImage = `url('${savedImgSrc}')`;
 
-    // Save Button Logic
-    const saveEntryBtn = document.getElementById('saveEntryBtn');
-    const journalInput = document.getElementById('journalInput');
+    const journalInput = document.getElementById("journalInput");
 
-    saveEntryBtn.addEventListener('click', () => {
+    const savedContent = localStorage.getItem("entryContent") || "";
+journalInput.value = savedContent;
+    const saveEntryBtn = document.getElementById("saveEntryBtn");
+
+    saveEntryBtn.addEventListener("click", async () => {
+
         const entryText = journalInput.value.trim();
-        const currentTitle = titleInput.value.trim() || 'Journal Entry';
+        const currentTitle = titleInput.value.trim();
 
-        if (!entryText) {
-            alert('Cannot save an empty journal entry!');
+        if (entryText === "") {
+            alert("Cannot save an empty journal entry!");
             return;
         }
 
-        // Get existing entries from localStorage or initialize an empty array
-        const existingEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+        try {
 
-        // Create new entry object using the updated/edited title
-        const newEntry = {
-            title: currentTitle,
-            snippet: entryText.substring(0, 35) + '...',
-            content: entryText,
-            date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-        };
+            await addDoc(collection(db, "journalEntries"), {
 
-        // Add to beginning of array and save back
-        existingEntries.unshift(newEntry);
-        localStorage.setItem('journalEntries', JSON.stringify(existingEntries));
+                userId: auth.currentUser.uid,
 
-        // Redirect back to main page
-        window.location.href = 'journaling.html';
+                title: currentTitle,
+
+                content: entryText,
+
+                snippet: entryText.substring(0,35) + "...",
+
+                mood: savedMood,
+
+                createdAt: serverTimestamp()
+
+            });
+
+            alert("Journal Saved!");
+
+            window.location.href = "journaling.html";
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            alert(error.message);
+
+        }
+
     });
+
 });

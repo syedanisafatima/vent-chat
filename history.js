@@ -13,14 +13,7 @@ function setFilter(event, filterType) {
     });
 }
 
-// Sidebar Navigation Switcher simulation
-function switchTab(event, tabName) {
-    const items = document.querySelectorAll('.nav-links li');
-    items.forEach(li => li.classList.remove('active'));
-    event.currentTarget.parentElement.classList.add('active');
-}
-
 // Logout action handler
 function handleLogout() {
-    alert('Logged out successfully!');
+    window.location.href = 'signup.html';
 }

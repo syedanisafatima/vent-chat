@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentChat - Resources & Help</title>
+    <link rel="stylesheet" href="resources.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">VentChat</h1>
+            <nav class="nav-links">
+                <a href="#">Check-In</a>
+                <a href="#">Check-In</a>
+                <a href="#">Breathing</a>
+                <a href="#">Mood History</a>
+                <a href="#" class="active">Resources</a>
+                <a href="#">Profile</a>
+            </nav>
+            <div class="logout">Logout</div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <h2 class="page-title">Resources & Help</h2>
+
+            <div class="modal-card">
+                <!-- Navigation Tabs (Yellow Pixel Buttons) -->
+                <div class="tab-container">
+                    <button class="pixel-btn active" id="articlesTab">Articles</button>
+                    <button class="pixel-btn" id="helplinesTab">Helplines</button>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div class="content-viewport" id="contentViewport">
+                    <!-- Default view: Articles -->
+                    <div class="cards-wrapper" id="articlesContent">
+                        <div class="resource-card card-anxiety">
+                            <div class="card-overlay">
+                                <div class="card-text">
+                                    <h3>Helping with self control</h3>
+                                    <p>Tips to calm your mind</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card card-mindfulness">
+                            <div class="card-overlay">
+                                <div class="card-text">
+                                    <h3>Perspective differ emotions</h3>
+                                    <p>Small steps, big impact</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="resources.js"></script>
+</body>
+</html>

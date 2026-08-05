@@ -169,7 +169,7 @@
                 <a href="breathing.html">Breathing</a>
                 <a href="history.html">Mood History</a>
                 <a href="resources.html">Resources</a>
-                <a href="profile.html">Profile</a>
+
             </nav>
             <div class="logout-area">
                 <a href="login.html" class="logout-btn">Logout</a>
@@ -228,9 +228,11 @@
                 <button id="saveMoodBtn" class="auth-btn uniform-btn" disabled style="opacity: 0.5;">Save Mood</button>
                 
                 <!-- Tell More Button -->
-                <a href="journaling.html" id="tellMoreBtn" class="auth-btn uniform-btn" disabled style="opacity: 0.5; background-color: #4a4ae2; color: white; text-decoration: none;">
-                    Tell me more about it ✍️
-                </a>
+              <a href="journaling.html"
+               id="tellMoreBtn"
+                class="auth-btn uniform-btn"
+style="display:none; 
+background-color:#6b46c1; color:white; width:80%; padding:18px; font-size:14px; margin:15px auto; text-align:center; text-decoration:none;"> Tell me more about it </a>
 
                 <div style="margin-top: 20px;">
                     <a href="history.html" style="font-size: 13px; color: #ffd700; text-decoration: underline;">View My Full Mood History</a>
@@ -241,6 +243,6 @@
 
     <div id="feedbackPopUp" style="display:none; position:fixed; bottom:20px; right: 20px; background:#333; color:#fff; padding:12px 20px; border-radius:8px; font-family:'Press Start 2P'; font-size:11px; z-index:100;">Mood logged!</div>
 
-    <script type="module" src="mood.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

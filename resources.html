@@ -14,49 +14,56 @@
         <aside class="sidebar">
             <h1 class="logo">VentChat</h1>
             <nav class="nav-links">
-                <a href="#">Check-In</a>
-                <a href="#">Check-In</a>
-                <a href="#">Breathing</a>
-                <a href="#">Mood History</a>
-                <a href="#" class="active">Resources</a>
-                <a href="#">Profile</a>
+                <a href="checkin.html">Check-In</a>
+                <a href="breathing.html">Breathing</a>
+                <a href="history.html">Mood History</a>
+                <a href="resources.html" class="active">Resources</a>
             </nav>
-            <div class="logout">Logout</div>
+            <div class="logout" id="logoutBtn" style="cursor: pointer;">Logout</div>
         </aside>
 
         <!-- Main Content Area -->
         <main class="main-content">
-            <h2 class="page-title">Resources & Help</h2>
+            <h2 class="page-title" style="font-size: 24px;">Resources & Help</h2>
 
             <div class="modal-card">
-                <!-- Navigation Tabs (Yellow Pixel Buttons) -->
+                <!-- Navigation Tabs -->
                 <div class="tab-container">
                     <button class="pixel-btn active" id="articlesTab">Articles</button>
                     <button class="pixel-btn" id="helplinesTab">Helplines</button>
                 </div>
 
-                <!-- Dynamic Content Area -->
+                <!-- Content Viewport containing pre-rendered elements -->
                 <div class="content-viewport" id="contentViewport">
-                    <!-- Default view: Articles -->
+                    <!-- Articles View -->
                     <div class="cards-wrapper" id="articlesContent">
                         <div class="resource-card card-anxiety">
                             <div class="card-overlay">
                                 <div class="card-text">
-                                    <h3>Helping with self control</h3>
-                                    <p>Tips to calm your mind</p>
+                                    <h2>Helping with self control</h2>
+                                    <h3>Tips to calm your mind</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="resource-card card-mindfulness">
                             <div class="card-overlay">
                                 <div class="card-text">
-                                    <h3>Perspective differ emotions</h3>
-                                    <p>Small steps, big impact</p>
+                                    <h2>Perspective differ emotions</h2><br>
+                                    <h3>Small steps, big impact</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Helplines View (Hidden by default) -->
+                    <div class="helpline-box" id="helplinesContent" style="display: none;">
+                        <div class="helpline-number">080-46110007</div>
+                        <div class="helpline-desc" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
+                            Seeking help is a natural and healthy part of life, not a sign of weakness. Everyone faces challenges they cannot solve alone, and reaching out builds stronger connections, shares burdens, and leads to faster, safer solutions.
+                        </div>
+                    </div>
+                </div><!-- Closing tag for contentViewport added here -->
+
             </div>
         </main>
     </div>

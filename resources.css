@@ -15,7 +15,7 @@ body, html {
     display: flex;
     width: 100vw;
     height: 100vh;
-    background: url('moodbackground.jpeg') no-repeat center center/cover;
+    background: url('images/moodbackground.jpeg') no-repeat center center/cover;
 }
 
 /* Sidebar styling */
@@ -72,7 +72,7 @@ body, html {
 }
 
 .page-title {
-    font-size: 16px;
+    font-size: 24px;
     margin-bottom: 20px;
     color: #fff;
     text-align: center;
@@ -148,11 +148,11 @@ body, html {
 }
 
 .card-anxiety {
-    background-image: url('resources.jpeg');
+    background-image: url('images/resources.jpeg');
 }
 
 .card-mindfulness {
-    background-image: url('resources2.jpeg');
+    background-image: url('images/resources2.jpeg');
 }
 
 .card-overlay {
@@ -178,7 +178,7 @@ body, html {
 /* Helpline View Styling */
 .helpline-box {
     flex: 1;
-    background: url('helpline.jpeg') no-repeat center center / cover;
+    background: url('helline.jpeg') no-repeat center center / cover;
     border: 2px solid #30363d;
     border-radius: 8px;
     display: flex;

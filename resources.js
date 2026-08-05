@@ -2,22 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const articlesTab = document.getElementById('articlesTab');
     const helplinesTab = document.getElementById('helplinesTab');
     const contentViewport = document.getElementById('contentViewport');
+    const logoutBtn = document.getElementById('logoutBtn'); // Assuming your logout element has this ID
 
     const articlesHTML = `
         <div class="cards-wrapper">
             <div class="resource-card card-anxiety">
                 <div class="card-overlay">
                     <div class="card-text">
-                        <h3>Managing Anxiety</h3>
-                        <p>Tips to calm your mind</p>
+                        <h2>Managing Anxiety</h2><br>
+                        <h3>Tips to calm your mind</h3>
                     </div>
                 </div>
             </div>
             <div class="resource-card card-mindfulness">
                 <div class="card-overlay">
                     <div class="card-text">
-                        <h3>Mindfulness Basics</h3>
-                        <p>Small steps, big impact</p>
+                        <h2>Mindfulness Basics</h2><br>
+                        <h3>Small steps, big impact</h3>
                     </div>
                 </div>
             </div>
@@ -31,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
 
+    // Automatically load articles on page load to prevent the font-size mismatch glitch
+    contentViewport.innerHTML = articlesHTML;
+
     articlesTab.addEventListener('click', () => {
         articlesTab.classList.add('active');
         helplinesTab.classList.remove('active');
@@ -42,4 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         articlesTab.classList.remove('active');
         contentViewport.innerHTML = helplinesHTML;
     });
+
+    // Hook up logout button functionality securely via JS
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
 });
+
+function handleLogout() {
+    window.location.href = 'login.html';
+}

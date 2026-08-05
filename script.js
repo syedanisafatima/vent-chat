@@ -123,7 +123,8 @@ setTimeout(() => {
     saveBtn.innerText = "Mood Saved!";
     saveBtn.disabled = true;
 
-    tellMoreBtn.style.display = "inline-block";
+    tellMoreBtn.style.display = "block";
+    tellMoreBtn.style.opacity = "1";
 });
 
 console.log("script.js Finished Successfully!");

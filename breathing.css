@@ -20,7 +20,7 @@ body {
 @media screen and (min-width: 769px) {
     body {
         background-color: #050814;
-        background-image: linear-gradient(rgba(5, 8, 20, 0.75), rgba(5, 8, 20, 0.75)), url('breathingbgbg.jpeg');
+        background-image: linear-gradient(rgba(5, 8, 20, 0.75), rgba(5, 8, 20, 0.75)), url('images/breathingbgbg.jpeg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

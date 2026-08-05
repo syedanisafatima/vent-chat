@@ -74,6 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     historyBtn.addEventListener('click', () => {
-        window.location.href = 'preview.html';
+        window.location.href = 'history.html';
     });
 });

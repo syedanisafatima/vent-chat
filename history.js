@@ -15,5 +15,5 @@ function setFilter(event, filterType) {
 
 // Logout action handler
 function handleLogout() {
-    window.location.href = 'signup.html';
+    window.location.href = 'login.html';
 }

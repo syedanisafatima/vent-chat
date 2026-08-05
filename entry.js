@@ -1,9 +1,9 @@
 import {
-  auth,
-  db,
-  addDoc,
-  collection,
-  serverTimestamp
+    auth,
+    db,
+    addDoc,
+    collection,
+    serverTimestamp
 } from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const journalInput = document.getElementById("journalInput");
 
     const savedContent = localStorage.getItem("entryContent") || "";
-journalInput.value = savedContent;
+    journalInput.value = savedContent;
+    
     const saveEntryBtn = document.getElementById("saveEntryBtn");
 
     saveEntryBtn.addEventListener("click", async () => {
@@ -35,21 +36,20 @@ journalInput.value = savedContent;
         }
 
         try {
+            // Generate a clean date string for the sidebar (e.g., "Aug 5")
+            const currentDateStr = new Date().toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric' 
+            });
 
             await addDoc(collection(db, "journalEntries"), {
-
                 userId: auth.currentUser.uid,
-
                 title: currentTitle,
-
                 content: entryText,
-
                 snippet: entryText.substring(0,35) + "...",
-
                 mood: savedMood,
-
-                createdAt: serverTimestamp()
-
+                date: currentDateStr, // <--- Saves the exact formatted creation date string
+                createdAt: serverTimestamp() // <--- Keeps server timestamp for sorting
             });
 
             alert("Journal Saved!");
@@ -57,13 +57,9 @@ journalInput.value = savedContent;
             window.location.href = "journaling.html";
 
         }
-
         catch(error){
-
             console.error(error);
-
             alert(error.message);
-
         }
 
     });

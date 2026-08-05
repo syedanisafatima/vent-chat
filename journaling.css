@@ -140,7 +140,7 @@ body {
 
 .greeting-section h1 {
     font-family: 'Press Start 2P', monospace;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 700;
     color: #f8fafc;
     margin-bottom: 8px;
@@ -163,7 +163,7 @@ body {
 }
 
 .quote-box p {
-    font-size: 12px;
+    font-size: 16px;
     color: #94a3b8;
     font-style: italic;
 }

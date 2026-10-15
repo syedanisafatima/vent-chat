@@ -1,71 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VC-Resources & Help</title>
+
     <link rel="stylesheet" href="resources.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h1 class="logo">VentChat</h1>
-            <nav class="nav-links">
-                <a href="checkin.html">Check-In</a>
-                <a href="breathing.html">Breathing</a>
-                <a href="history.html">Mood History</a>
-                <a href="resources.html" class="active">Resources</a>
-            </nav>
-            <div class="logout" id="logoutBtn" style="cursor: pointer;">Logout</div>
+
+        <!-- MOBILE TOP BAR -->
+        <header class="mobile-topbar">
+            <button id="menuToggle"
+                    class="menu-toggle"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false">
+                ☰
+            </button>
+            <div class="mobile-logo">VentChat</div>
+        </header>
+
+        <!-- MOBILE MENU BACKDROP -->
+        <div class="menu-backdrop" id="menuBackdrop"></div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <h1 class="logo">VentChat</h1>
+
+                <nav class="nav-links">
+                    <a href="checkin.html">Check-In</a>
+                    <a href="journaling.html">Journal</a>
+                    <a href="breathing.html">Breathing</a>
+                    <a href="history.html">Mood History</a>
+                    <a href="resources.html" class="active">Resources</a>
+                </nav>
+            </div>
+
+            <div class="logout" id="logoutBtn" role="button" tabindex="0">
+                Logout
+            </div>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- MAIN CONTENT -->
         <main class="main-content">
-            <h2 class="page-title" style="font-size: 24px;">Resources & Help</h2>
+
+            <h2 class="page-title">Resources & Help</h2>
 
             <div class="modal-card">
-                <!-- Navigation Tabs -->
+
+                <!-- TABS -->
                 <div class="tab-container">
-                    <button class="pixel-btn active" id="articlesTab">Articles</button>
-                    <button class="pixel-btn" id="helplinesTab">Helplines</button>
+                    <button class="pixel-btn active" id="articlesTab">
+                        Articles
+                    </button>
+
+                    <button class="pixel-btn" id="helplinesTab">
+                        Helplines
+                    </button>
                 </div>
 
-                <!-- Content Viewport containing pre-rendered elements -->
+                <!-- CONTENT VIEWPORT -->
                 <div class="content-viewport" id="contentViewport">
-                    <!-- Articles View -->
+
+                    <!-- ARTICLES -->
                     <div class="cards-wrapper" id="articlesContent">
+
                         <div class="resource-card card-anxiety">
                             <div class="card-overlay">
                                 <div class="card-text">
-                                    <h2>Helping with self control</h2>
+                                    <h2>Managing Anxiety</h2>
                                     <h3>Tips to calm your mind</h3>
                                 </div>
                             </div>
                         </div>
+
                         <div class="resource-card card-mindfulness">
                             <div class="card-overlay">
                                 <div class="card-text">
-                                    <h2>Perspective differ emotions</h2><br>
+                                    <h2>Mindfulness Basics</h2>
                                     <h3>Small steps, big impact</h3>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                    <!-- Helplines View (Hidden by default) -->
-                    <div class="helpline-box" id="helplinesContent" style="display: none;">
+                    <!-- HELPLINES -->
+                    <div class="helpline-box" id="helplinesContent" hidden>
                         <div class="helpline-number">080-46110007</div>
-                        <div class="helpline-desc" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
-                            Seeking help is a natural and healthy part of life, not a sign of weakness. Everyone faces challenges they cannot solve alone, and reaching out builds stronger connections, shares burdens, and leads to faster, safer solutions.
+
+                        <div class="helpline-desc">
+                            Seeking help is a natural and healthy part of life,
+                            not a sign of weakness. Everyone faces challenges
+                            they cannot solve alone. Reaching out can help you
+                            find support, share concerns, and explore solutions.
                         </div>
                     </div>
-                </div><!-- Closing tag for contentViewport added here -->
 
+                </div>
             </div>
         </main>
+
     </div>
 
     <script src="resources.js"></script>

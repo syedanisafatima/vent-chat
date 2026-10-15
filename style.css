@@ -1,3 +1,5 @@
+
+/* General Page Styling */
 body {
     margin: 0;
     text-align: center;
@@ -9,7 +11,12 @@ body {
     color: white;
 }
 
-/* Hero Section - Huge Title & White Arial Subtitle */
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero Section */
 .hero-section {
     height: 100vh;
     display: flex;
@@ -20,7 +27,7 @@ body {
 
 h1 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 80px; /* MASSIVE */
+    font-size: 80px;
     color: #FFD700;
     text-shadow: 6px 6px 0px #000000;
     margin-bottom: 20px;
@@ -29,12 +36,14 @@ h1 {
 .subtitle {
     font-family: Arial, sans-serif;
     font-size: 24px;
-    color: #ffffff; /* Clean white */
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
+
 /* How It Works Section */
 .features-section {
     padding: 100px 20px;
+    scroll-margin-top: 20px;
 }
 
 .features-section h2 {
@@ -45,7 +54,7 @@ h1 {
     text-shadow: 3px 3px 0px #000000;
 }
 
-/* Flexbox container to align cards side-by-side in one line */
+/* Feature Cards Container */
 .features-container {
     display: flex;
     justify-content: center;
@@ -73,12 +82,8 @@ h1 {
     transform: translateY(-8px);
     background: #ffffff;
 }
-/* Final CTA Section */
-.cta-section {
-    padding: 40px 20px;
-    text-align: center;
-}
 
+/* Feature Card Images */
 .card img {
     width: 120px;
     height: 120px;
@@ -86,36 +91,22 @@ h1 {
     display: block;
     margin: 0 auto 15px auto;
 }
-.vent-btn {
-    background: #FFD700;
-    color: #000;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 20px;
-    padding: 25px 45px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3) #b39700;
-    transition: 0.1s ease;
-    top: -40px;
-    display : inline-block;
+
+/* Final Start Venting Section */
+.cta-section {
+    padding: 40px 20px;
+    text-align: center;
 }
 
-.vent-btn:hover {
-    transform: scale(1.05);
-}
-footer, .footer {
-    margin-top: 50px; /* Pushes the text further down */
-    text-align: center;
-    padding-bottom: 20px;
-}
+/* Start Venting Link */
 .start-venting-link {
     text-decoration: none;
     display: inline-block;
 }
 
+/* Start Venting Button */
 .start-venting-btn {
-    background-color: #ffd700;
+    background-color: #FFD700;
     color: #2b2b2b;
     font-family: 'Press Start 2P', cursive;
     font-size: 16px;
@@ -137,4 +128,212 @@ footer, .footer {
 .start-venting-btn:active {
     transform: translateY(5px);
     box-shadow: 0 0 0 #2b2b2b;
+}
+
+/* Footer */
+footer,
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* Scroll Down Text - Bottom Center */
+.scroll-down-text {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    color: #FFD700;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-decoration: none;
+    text-shadow: 3px 3px 0 #000000;
+
+    animation: scrollBounce 1.5s infinite;
+    z-index: 1000;
+}
+
+/* Down Arrow */
+.scroll-arrow {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #000000;
+}
+
+/* Scroll Hover Effect */
+.scroll-down-text:hover {
+    color: #ffdf33;
+}
+
+/* Bouncing Animation */
+@keyframes scrollBounce {
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 6px);
+    }
+}
+
+/* Smaller Screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 38px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .features-section h2 {
+        font-size: 20px;
+    }
+
+    .scroll-down-text {
+        top: 85%;
+        font-size: 10px;
+    }
+
+    .scroll-arrow {
+        font-size: 20px;
+    }
+
+    .start-venting-btn {
+        min-width: auto;
+        font-size: 14px;
+        padding: 20px 25px;
+    }
+}
+
+/* Responsive Fixes - Keeps the Original VentChat Design */
+
+/* Prevent unwanted horizontal scrolling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    h1 {
+        font-size: clamp(42px, 7vw, 70px);
+    }
+
+    .features-container {
+        gap: 20px;
+    }
+
+    .card {
+        width: calc(50% - 20px);
+        max-width: 260px;
+    }
+
+    .start-venting-btn {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+    .hero-section {
+        min-height: 100svh;
+        height: auto;
+        padding: 40px 16px 100px;
+    }
+
+    h1 {
+        font-size: clamp(25px, 7.5vw, 38px);
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+        font-size: clamp(14px, 4vw, 18px);
+        max-width: 100%;
+    }
+
+    .features-section {
+        padding: 70px 16px;
+    }
+
+    .features-section h2 {
+        font-size: clamp(16px, 4.5vw, 20px);
+        line-height: 1.7;
+    }
+
+    .features-container {
+        width: 100%;
+        gap: 14px;
+    }
+
+    .card {
+        width: calc(50% - 7px);
+        min-width: 0;
+        padding: 20px 10px;
+        font-size: 15px;
+        overflow-wrap: anywhere;
+    }
+
+    .card img {
+        width: min(120px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .cta-section {
+        padding: 30px 16px;
+    }
+
+    .start-venting-btn {
+        min-width: 0;
+        width: auto;
+        max-width: 100%;
+        padding: 18px 20px;
+        font-size: clamp(11px, 3.5vw, 14px);
+        overflow-wrap: anywhere;
+    }
+
+    .scroll-down-text {
+        top: 85%;
+        max-width: calc(100% - 20px);
+        font-size: 10px;
+    }
+
+    footer,
+    .footer {
+        padding: 0 12px 20px;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 360px) {
+    .card {
+        font-size: 13px;
+        padding: 16px 8px;
+    }
+
+    .features-section h2 {
+        font-size: 15px;
+    }
+
+    .start-venting-btn {
+        padding: 16px 12px;
+    }
 }

@@ -1,58 +1,115 @@
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* =====================================
+       ELEMENTS
+       ===================================== */
+
     const articlesTab = document.getElementById('articlesTab');
     const helplinesTab = document.getElementById('helplinesTab');
-    const contentViewport = document.getElementById('contentViewport');
-    const logoutBtn = document.getElementById('logoutBtn'); // Assuming your logout element has this ID
 
-    const articlesHTML = `
-        <div class="cards-wrapper">
-            <div class="resource-card card-anxiety">
-                <div class="card-overlay">
-                    <div class="card-text">
-                        <h2>Managing Anxiety</h2><br>
-                        <h3>Tips to calm your mind</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="resource-card card-mindfulness">
-                <div class="card-overlay">
-                    <div class="card-text">
-                        <h2>Mindfulness Basics</h2><br>
-                        <h3>Small steps, big impact</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+    const articlesContent = document.getElementById('articlesContent');
+    const helplinesContent = document.getElementById('helplinesContent');
 
-    const helplinesHTML = `
-        <div class="helpline-box">
-            <div class="helpline-number">080-46110007</div>
-            <div class="helpline-desc">Seeking help is a natural and healthy part of life, not a sign of weakness. Everyone faces challenges they cannot solve alone, and reaching out builds stronger connections, shares burdens, and leads to faster, safer solutions.</div>
-        </div>
-    `;
+    const logoutBtn = document.getElementById('logoutBtn');
 
-    // Automatically load articles on page load to prevent the font-size mismatch glitch
-    contentViewport.innerHTML = articlesHTML;
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const menuBackdrop = document.getElementById('menuBackdrop');
 
-    articlesTab.addEventListener('click', () => {
+
+    /* =====================================
+       ARTICLES / HELPLINES TABS
+       ===================================== */
+
+    function showArticles() {
+        articlesContent.hidden = false;
+        helplinesContent.hidden = true;
+
         articlesTab.classList.add('active');
         helplinesTab.classList.remove('active');
-        contentViewport.innerHTML = articlesHTML;
-    });
+    }
 
-    helplinesTab.addEventListener('click', () => {
+    function showHelplines() {
+        articlesContent.hidden = true;
+        helplinesContent.hidden = false;
+
         helplinesTab.classList.add('active');
         articlesTab.classList.remove('active');
-        contentViewport.innerHTML = helplinesHTML;
+    }
+
+    articlesTab.addEventListener('click', showArticles);
+    helplinesTab.addEventListener('click', showHelplines);
+
+
+    /* =====================================
+       LOGOUT
+       ===================================== */
+
+    function handleLogout() {
+        window.location.href = 'login.html';
+    }
+
+    logoutBtn.addEventListener('click', handleLogout);
+
+    logoutBtn.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleLogout();
+        }
     });
 
-    // Hook up logout button functionality securely via JS
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', handleLogout);
-    }
-});
 
-function handleLogout() {
-    window.location.href = 'login.html';
-}
+    /* =====================================
+       MOBILE HAMBURGER MENU
+       ===================================== */
+
+    function toggleMenu(open) {
+        sidebar.classList.toggle('menu-open', open);
+        menuBackdrop.classList.toggle('show', open);
+
+        menuToggle.setAttribute('aria-expanded', String(open));
+
+        menuToggle.setAttribute(
+            'aria-label',
+            open ? 'Close navigation menu' : 'Open navigation menu'
+        );
+
+        menuToggle.textContent = open ? '✕' : '☰';
+    }
+
+    // Open or close menu using the three-line icon
+    menuToggle.addEventListener('click', () => {
+        const isOpen = sidebar.classList.contains('menu-open');
+        toggleMenu(!isOpen);
+    });
+
+    // Close menu by clicking outside it
+    menuBackdrop.addEventListener('click', () => {
+        toggleMenu(false);
+    });
+
+    // Close after selecting a navigation link
+    sidebar.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu(false);
+        });
+    });
+
+    // Close when Logout is clicked
+    logoutBtn.addEventListener('click', () => {
+        toggleMenu(false);
+    });
+
+    // Close menu using Escape
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            toggleMenu(false);
+        }
+    });
+
+    // Start with Articles selected and the mobile menu closed
+    showArticles();
+    toggleMenu(false);
+
+});
